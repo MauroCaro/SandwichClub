@@ -18,6 +18,13 @@ public class JsonUtils {
     private static final String IMAGE = "image";
     private static final String INGREDIENTS = "ingredients";
 
+    /**
+     * Parsing data that comes from JsonString into a model
+     *
+     * @param json
+     *
+     * @return Sandwich model
+     */
     public static Sandwich parseSandwichJson(String json) {
         Sandwich sandwich = new Sandwich();
         try {
@@ -35,6 +42,13 @@ public class JsonUtils {
         return sandwich;
     }
 
+    /**
+     * Get list of strings from a Json array
+     *
+     * @param jsonArray
+     *
+     * @return List of Strings
+     */
     private static List<String> getListString(JSONArray jsonArray) {
         List<String> stringList = new ArrayList<>();
         if (jsonArray != null) {
