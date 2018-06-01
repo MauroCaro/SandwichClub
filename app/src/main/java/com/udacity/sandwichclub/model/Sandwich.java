@@ -11,21 +11,6 @@ public class Sandwich {
     private String image;
     private List<String> ingredients = null;
 
-    /**
-     * No args constructor for use in serialization
-     */
-    public Sandwich() {
-    }
-
-    public Sandwich(String mainName, List<String> alsoKnownAs, String placeOfOrigin, String description, String image, List<String> ingredients) {
-        this.mainName = mainName;
-        this.alsoKnownAs = alsoKnownAs;
-        this.placeOfOrigin = placeOfOrigin;
-        this.description = description;
-        this.image = image;
-        this.ingredients = ingredients;
-    }
-
     public String getMainName() {
         return mainName;
     }

@@ -3,10 +3,12 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
@@ -17,6 +19,7 @@ public class DetailActivity extends AppCompatActivity {
     private static final int DEFAULT_POSITION = -1;
     private TextView alsoKnowAs, placeOfOrigin, description, ingredients;
     private ImageView imageView;
+    private View backgroundProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +59,9 @@ public class DetailActivity extends AppCompatActivity {
         alsoKnowAs = findViewById(R.id.also_known_tv);
         placeOfOrigin = findViewById(R.id.place_origin_tv);
         description = findViewById(R.id.description_tv);
-        ingredients = findViewById(R.id.description_tv);
+        ingredients = findViewById(R.id.ingredients_tv);
         imageView = findViewById(R.id.image_iv);
+        backgroundProgress = findViewById(R.id.background_progress);
     }
 
     /**
@@ -69,19 +73,41 @@ public class DetailActivity extends AppCompatActivity {
         setTitle(sandwich.getMainName());
         Picasso.with(this)
                .load(sandwich.getImage())
-               .into(imageView);
+               .into(imageView, new Callback() {
+                   @Override
+                   public void onSuccess() {
+                       hideBackgroundProgress();
+                   }
+
+                   @Override
+                   public void onError() {
+                       hideBackgroundProgress();
+                       Toast.makeText(DetailActivity.this, R.string.detail_error_message_image, Toast.LENGTH_SHORT).show();
+                   }
+               });
         placeOfOrigin.setText(sandwich.getPlaceOfOrigin().toString());
         description.setText(sandwich.getDescription().toString());
-        if (sandwich.getAlsoKnownAs() != null) {
+        if (sandwich.getAlsoKnownAs() != null && !sandwich.getAlsoKnownAs().isEmpty()) {
             for (String item : sandwich.getAlsoKnownAs()) {
-                alsoKnowAs.setText(item.toString());
+                alsoKnowAs.append("-" + item.toString() + "\n");
             }
+        } else {
+            alsoKnowAs.setText(R.string.detail_no_information);
         }
-        if (sandwich.getIngredients() != null) {
+        if (sandwich.getIngredients() != null && !sandwich.getAlsoKnownAs().isEmpty()) {
             for (String item : sandwich.getIngredients()) {
-                ingredients.setText(item.toString());
+                ingredients.append("-" + item.toString() + "\n");
             }
+        } else {
+            ingredients.setText(R.string.detail_no_information);
         }
+    }
+
+    /**
+     * Hide the view of the background with the progress bar
+     */
+    private void hideBackgroundProgress() {
+        backgroundProgress.setVisibility(View.GONE);
     }
 
     /**

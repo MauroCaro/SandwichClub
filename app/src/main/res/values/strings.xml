@@ -6,12 +6,14 @@
     <string name="detail_place_of_origin_label">Place of origin:</string>
     <string name="detail_description_label">Description:</string>
     <string name="detail_ingredients_label">Ingredients:</string>
+    <string name="detail_no_information">We could not find information for this</string>
 
     <!-- Content descriptions-->
     <string name="sandwich_picture_content_description">Sandwich picture</string>
 
     <!-- Error messages-->
     <string name="detail_error_message">Sandwich data not available</string>
+    <string name="detail_error_message_image">Unable to load image at this moment</string>
 
     <string-array name="sandwich_names">
         <item>Ham and cheese sandwich</item>
@@ -85,6 +87,12 @@
         <item>
             {\"name\":{\"mainName\":\"Pljeskavica\",\"alsoKnownAs\":[]},\"placeOfOrigin\":\"Serbia\",\"description\":\"Pljeskavica,
             a grilled dish of spiced meat patty mixture of pork, beef and lamb, is a national dish
+            of Serbia, also popular in Bosnia and Herzegovina and Croatia. It is a main course
+            served with onions, kajmak (milk cream), ajvar (relish), and urnebes (spicy cheese
+            salad), either on plate with side dishes, or with lepinja (flatbread, as a type of
+            hamburger). Recently, Pljeskavica has gained popularity elsewhere in Europe and is
+            served in a few speciality fast food restaurants in Germany, Sweden, and
+            Austria  a grilled dish of spiced meat patty mixture of pork, beef and lamb, is a national dish
             of Serbia, also popular in Bosnia and Herzegovina and Croatia. It is a main course
             served with onions, kajmak (milk cream), ajvar (relish), and urnebes (spicy cheese
             salad), either on plate with side dishes, or with lepinja (flatbread, as a type of
