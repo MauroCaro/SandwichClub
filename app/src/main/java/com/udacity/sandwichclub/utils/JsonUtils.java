@@ -30,12 +30,12 @@ public class JsonUtils {
         try {
             JSONObject sandwichJson = new JSONObject(json);
             JSONObject name = sandwichJson.getJSONObject(NAME);
-            sandwich.setMainName(name.getString(MAIN_NAME));
+            sandwich.setMainName(name.optString(MAIN_NAME));
             sandwich.setAlsoKnownAs(getListString(name.getJSONArray(ALSO_KNOWN_AS)));
-            sandwich.setPlaceOfOrigin(sandwichJson.getString(PLACE_ORIGIN));
-            sandwich.setDescription(sandwichJson.getString(DESCRIPTION));
-            sandwich.setImage(sandwichJson.getString(IMAGE));
-            sandwich.setIngredients(getListString(name.getJSONArray(INGREDIENTS)));
+            sandwich.setPlaceOfOrigin(sandwichJson.optString(PLACE_ORIGIN));
+            sandwich.setDescription(sandwichJson.optString(DESCRIPTION));
+            sandwich.setImage(sandwichJson.optString(IMAGE));
+            sandwich.setIngredients(getListString(sandwichJson.getJSONArray(INGREDIENTS)));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -52,12 +52,12 @@ public class JsonUtils {
     private static List<String> getListString(JSONArray jsonArray) {
         List<String> stringList = new ArrayList<>();
         if (jsonArray != null) {
-            try {
-                for (int i = 0; i <= jsonArray.length(); i++) {
+            for (int i = 0; i <= jsonArray.length(); i++) {
+                try {
                     stringList.add(jsonArray.getString(i));
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
         }
         return stringList;
